@@ -1,0 +1,48 @@
+---
+title: "A leaflet example"
+date: "February 7, 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library("leaflet")
+```
+
+## R Markdown
+
+```{r}
+
+spb_districts <- data.frame(
+  district = c("Admiralteysky District",
+"Frunzensky District",
+"Kalininsky District",
+"Kirovsky District",
+"Kolpinsky District",
+"Krasnogvardeysky District",
+"Krasnoselsky District",
+"Kronshtadtsky District",
+"Kurortny District",
+"Moskovsky District",
+"Nevsky District",
+"Petrodvortsovy District",
+"Petrogradsky District",
+"Primorsky District",
+"Pushkinsky District",
+"Tsentralny District",
+"Vasileostrovsky District",
+"Vyborgsky District"),
+lat=c(59.9186, 59.8664, 60.0052, 59.8700, 59.7777, 59.9782, 59.7698, 60.0128, 60.1239, 59.8287,
+      59.8720, 59.8765, 59.9642, 60.0236, 59.7318, 59.9358, 59.9407, 60.0389),
+lng=c(30.2965, 30.4039, 30.3931, 30.2307, 30.5996, 30.4802, 30.1518, 29.7446, 29.8126, 30.2902,
+      30.4653, 29.8741, 30.2795, 30.1432, 30.3974, 30.3562, 30.2474, 30.2291)
+)
+
+my_map <- spb_districts %>% 
+  leaflet() %>% 
+  addTiles() %>% 
+  addMarkers (~lng, ~lat, popup =~district)
+my_map
+
+```
+
